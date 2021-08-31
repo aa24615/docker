@@ -2,7 +2,8 @@
 
 读心印的docker笔记
 
-- [php日常环境](./lnmp/README.md)
+- [lnmp环境](./lnmp/README.md)
+- [lnmp环境(win版)](./lnmp-win/README.md)
 - [redis集群](./redis-cluster/README.md)
 
 
