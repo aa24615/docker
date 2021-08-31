@@ -1,5 +1,5 @@
 FROM php:7.4.6-fpm
-WORKDIR /www/openwork/
+WORKDIR /www/
 
 RUN apt-get update -y
 
