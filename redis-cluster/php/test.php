@@ -1,13 +1,12 @@
 <?php
 require 'vendor/autoload.php';//引入predis相关包  
-//redis实例  
-$servers = array(  
+
+//redis实例
+$servers = array(
     'tcp://106.53.147.61:6001',
     'tcp://106.53.147.61:6002',
-    'tcp://106.53.147.61:6003',
-);  
-  
-$client = new Predis\Client($servers, array('cluster' => 'redis'));  
+    //'tcp://106.53.147.61:6003',
+);
 
 $text = <<<TEXT
 Installing dependencies from lock file (including require-dev)
@@ -209,9 +208,13 @@ Use the `composer fund` command to find out more!
 TEXT;
 
 
-for($i=141707; $i<1000000; $i++){
+for($i=428677; $i<1000000; $i++){
+
+    $client = new Predis\Client($servers, array('cluster' => 'redis'));
+
     $is = $client->set("name".$i, $text.PHP_EOL.$i);
     echo ((string)$is);
+    echo PHP_EOL;
     echo $i.PHP_EOL;
 }
 
