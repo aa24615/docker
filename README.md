@@ -1,12 +1,34 @@
 # docker
 
-读心印的docker笔记
+不正经的程序员之 [ 抢运维饭碗篇 ]
+
+这是读心印的docker笔记
+
+> 注意: 本文档未发布,仅作参考
+
+#### lnmp
 
 - [lnmp环境](./lnmp/README.md)
 - [lnmp环境(win版)](./lnmp-win/README.md)
-- [redis集群](./redis-cluster/README.md)
+  
+#### redis
 
+- [redis集群](./redis-cluster/README.md)
+- [redis哨兵](./redis-cluster/README.md) [未完成]
+- [redis主从](./redis-sentinel/README.md) [未完成]
+
+#### mysql
+  
+- [mysql主从](./mysql-master-slave/README.md)  [未完成]
+- [mycat中间件](./mycat/README.md) [未完成]
+
+
+## 参与贡献
+
+1. fork 当前库到你的名下
+2. 在你的本地修改完成审阅过后提交到你的仓库
+3. 提交 PR 并描述你的修改，等待合并
 
 ### License
 
-gitTools is licensed under the license of MIT. See the [LICENSE](LICENSE) for more details.
+[LICENSE](LICENSE)
