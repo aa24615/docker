@@ -1,13 +1,33 @@
+#### 初始化6个主机
 
-### 进入某一个节点
+```shell
+sh start.sh
+```
+
+#### 停止所有主机
+```shell
+sh stop.sh
+```
+
+#### 重启所有主机
+```shell
+sh restart.sh
+```
+
+#### 摧毁所有主机
+```shell
+sh rm.sh
+```
+
+### 创建集群
+
+- 进入任一个节点
 
 ```shell
 docker exec -it redis-node1 /bin/bash
 ```
 
-### 创建集群 3主3从
-
-请将ip替换成外网ip
+- 创建集群 3主3从
 
 ```shell
 redis-cli --cluster create \
@@ -20,5 +40,6 @@ redis-cli --cluster create \
 --cluster-replicas 1
 ```
 
+> 注: 如果外网使用,请将ip替换成外网ip,同时修改conf配置文件
 
 
