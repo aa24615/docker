@@ -14,13 +14,14 @@
 #### redis
 
 - [redis集群](./redis-cluster/README.md)
-- [redis哨兵](./redis-cluster/README.md) [未完成]
-- [redis主从](./redis-sentinel/README.md) [未完成]
+- [redis主从](./redis-master-slave/README.md) [未完成]
+- [redis哨兵](./redis-sentinel/README.md) [未完成]
 
 #### mysql
   
 - [mysql主从](./mysql-master-slave/README.md)  [未完成]
 - [mycat中间件](./mycat/README.md) [未完成]
+
 
 
 ## 参与贡献
