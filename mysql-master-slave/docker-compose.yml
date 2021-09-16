@@ -1,0 +1,32 @@
+# yaml 配置实例
+version: '3'
+services:
+  mysql-node1:
+    image: "mysql:5.7"
+    ports:
+      - "3001:3306"
+    volumes:
+      - "./master/mysqld.cnf:/etc/mysql/conf.d/docker.cnf"
+      - "./master/data:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    privileged: true
+    networks:
+      - mysqlMasterSlave
+  mysql-node2:
+    image: "mysql:5.7"
+    ports:
+      - "3002:3306"
+    volumes:
+      - "./slave/mysqld.cnf:/etc/mysql/conf.d/docker.cnf"
+      - "./slave/data:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    privileged: true
+    networks:
+      - mysqlMasterSlave
+networks:
+  mysqlMasterSlave:
+    driver: bridge
