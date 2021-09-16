@@ -1,5 +1,11 @@
 # mycat
 
+
+- [水平分表](./split_horizon.md)
+- [垂直分库](./split_vertical.md)
+
+
+
 新建一个centos系统
 
 ```shell
@@ -21,10 +27,10 @@ mycat  console
 
 准备两台服务器
 
-- 127.0.0.1:3301 主
-- 127.0.0.1:3302 从
+- 127.0.0.1:3001 主
+- 127.0.0.1:3002 从
 
-搭建 [mysql主从](mysql-master-slave/README.md)
+搭建 [mysql主从](../mysql-master-slave/README.md)
 
 
 配置
@@ -41,3 +47,7 @@ mycat  console
     </writeHost>
 </dataHost>
 ```
+
+
+
+
