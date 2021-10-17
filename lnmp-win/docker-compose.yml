@@ -7,6 +7,7 @@ services:
       - "3306:3306"
     volumes:
       - "D:/data/mysql/data:/var/lib/mysql"
+      - "D:/www/:/www/"
     environment:
       MYSQL_ROOT_PASSWORD: root
     restart: always
