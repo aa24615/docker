@@ -1,0 +1,1 @@
+mysql -uroot -proot zzmei < /www/backup/2021-10-17/zz_hosts_2.sql
