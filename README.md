@@ -9,7 +9,6 @@
 #### lnmp
 
 - [lnmp环境](./lnmp/README.md)
-- [lnmp环境(win版)](./lnmp-win/README.md)
   
 #### redis
 

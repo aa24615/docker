@@ -1,5 +1,0 @@
-```shell
-docker-compose up
-```
-
-

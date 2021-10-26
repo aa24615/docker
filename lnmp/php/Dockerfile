@@ -1,4 +1,4 @@
-FROM php:7.4.6-fpm
+FROM php:7.4.25-fpm
 WORKDIR /www/
 
 RUN apt-get update -y

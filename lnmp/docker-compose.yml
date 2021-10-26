@@ -6,7 +6,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - "/data/mysql/data:/var/lib/mysql"
+      - "./mysql/data:/var/lib/mysql"
     environment:
       MYSQL_ROOT_PASSWORD: root
     restart: always
@@ -14,11 +14,11 @@ services:
     networks:
       - webnet
   redis:
-    image: "redis:5.0"
+    image: "redis:6.2.5"
     ports:
       - "6379:6379"
     volumes:
-      - "/data/redis/data:/data/redis/data"
+      - "./redis/data:/data/redis/data"
       - "./redis/redis.conf:/etc/redis.conf"
     command: "redis-server /etc/redis.conf"
     restart: always
@@ -34,7 +34,7 @@ services:
     networks:
       - webnet
     volumes:
-      - "/www/:/www/"
+      - "./www/:/www/"
   nginx:
     image: "nginx:1.14.0"
     ports:
@@ -44,8 +44,8 @@ services:
     networks:
       - webnet
     volumes:
-      - "/www/:/www/"
-      - "./data/vhost:/etc/nginx/conf.d"
+      - "./www/:/www/"
+      - "./nginx/vhost:/etc/nginx/conf.d"
       - "./nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
 networks:
   webnet:
