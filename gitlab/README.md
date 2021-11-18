@@ -1,6 +1,11 @@
 # docker-gitlab
 
-gitlab一健包
+这是gitlab一健包
+
+### 软件
+
+- gitlab    
+- gitlab-runner
 
 
 ### 运行
