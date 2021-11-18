@@ -1,0 +1,31 @@
+# yaml 配置实例
+version: '3'
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    networks:
+      - gitlab-net
+    hostname: 'gitlab.test.com'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.test.com'
+    ports:
+      - '8091:80'
+    volumes:
+      - './config:/etc/gitlab'
+      - './logs:/var/log/gitlab'
+      - './data:/var/opt/gitlab'
+  gitlab-runner:
+    image: 'gitlab/gitlab-runner:latest'
+    restart: always
+    networks:
+      - gitlab-net
+    ports:
+      - '8092:8093'
+    volumes:
+      - './run/docker.sock:/var/run/docker.sock'
+      - './gitlab-runner-config:/etc/gitlab-runner'
+networks:
+  gitlab-net:
+    driver: bridge
