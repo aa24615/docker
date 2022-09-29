@@ -36,7 +36,7 @@ services:
     volumes:
       - "../../:/www/"
   php8:
-    build: ./php
+    build: ./php8
     ports:
       - "8000:9000"
     restart: always
