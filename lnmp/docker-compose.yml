@@ -34,7 +34,17 @@ services:
     networks:
       - webnet
     volumes:
-      - "./www/:/www/"
+      - "../../:/www/"
+  php8:
+    build: ./php
+    ports:
+      - "8000:9000"
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+    volumes:
+      - "../../:/www/"
   nginx:
     image: "nginx:1.14.0"
     ports:
@@ -44,7 +54,7 @@ services:
     networks:
       - webnet
     volumes:
-      - "./www/:/www/"
+      - "../../:/www/"
       - "./nginx/vhost:/etc/nginx/conf.d"
       - "./nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
 networks:
