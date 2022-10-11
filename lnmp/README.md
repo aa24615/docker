@@ -8,6 +8,7 @@ mac/linux/win通用哈
 
 - nginx 1.14.0
 - php 7.4.25
+- php8 8.0.24
 - mysql 5.7
 - redis 6.2.5
 

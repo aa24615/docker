@@ -1,14 +1,15 @@
 # yaml 配置实例
 version: '3'
 services:
-  mysql:
-    image: "mysql:5.7"
+  mongo:
+    image: "mongo:4.2"
     ports:
-      - "3306:3306"
+      - "27017:27017"
     volumes:
-      - "./mysql/data:/var/lib/mysql"
+      - "./mongo/data:/data/db"
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
     restart: always
     privileged: true
     networks:
@@ -25,28 +26,6 @@ services:
     privileged: true
     networks:
       - webnet
-  php:
-    # build: ./php
-    image: "aa24615/php:7.4.6-fpm"
-    ports:
-      - "9000:9000"
-    restart: always
-    privileged: true
-    networks:
-      - webnet
-    volumes:
-      - "../../:/www/"
-  php8:
-    # build: ./php8
-    image: "php:8.0.24-fpm"
-    ports:
-      - "8000:9000"
-    restart: always
-    privileged: true
-    networks:
-      - webnet
-    volumes:
-      - "../../:/www/"
   nginx:
     image: "nginx:1.14.0"
     ports:
@@ -56,9 +35,20 @@ services:
     networks:
       - webnet
     volumes:
-      - "../../:/www/"
+      - "./www/:/www/"
       - "./nginx/vhost:/etc/nginx/conf.d"
       - "./nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
+  node:
+    image: "node:14"
+    ports:
+      - "3000:3000"
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+    volumes:
+      - "./www/:/www/"
+    command: "node /www/test.js"
 networks:
   webnet:
     driver: bridge

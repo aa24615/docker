@@ -6,25 +6,27 @@
 
 > 注意: 本文档未发布,仅作参考
 
-#### lnmp
+#### web环境
 
-- [lnmp环境](./lnmp/README.md)
+- [x] [lnmp环境](./lnmp/) php+mysql 
+- [ ] [lnmn_nosql环镜](./lnnm_mongodb/) nodejs+mongodb 
+- [ ] [lnmn环镜](./lnnm_mysql/) nodejs+mysql 
   
 #### redis
 
-- [redis集群](./redis-cluster/README.md)
-- [redis主从](./redis-master-slave/README.md) [未完成]
-- [redis哨兵](./redis-sentinel/README.md) [未完成]
+- [x] [redis集群](./redis-cluster/README.md)
+- [ ] [redis主从](./redis-master-slave/README.md) 
+- [ ] [redis哨兵](./redis-sentinel/README.md) 
 
 #### mysql
   
-- [mysql主从](./mysql-master-slave/README.md)  [未完成]
-- [mycat中间件](./mycat/README.md) [未完成]
+- [ ] [mysql主从](./mysql-master-slave/README.md)  
+- [ ] [mycat中间件](./mycat/README.md) 
 
 
 #### gitlab
 
-- [gitlab](./gitlab/README.md)  [已完成]
+- [x] [gitlab](./gitlab/README.md)  [ok]
 
 ## 参与贡献
 
