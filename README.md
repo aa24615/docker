@@ -6,12 +6,17 @@
 
 > 注意: 本文档未发布,仅作参考
 
-#### web环境
+#### web
 
-- [x] [lnmp环境](./lnmp/) php+mysql 
-- [ ] [lnmn_nosql环镜](./lnnm_mongodb/) nodejs+mongodb 
-- [ ] [lnmn环镜](./lnnm_mysql/) nodejs+mysql 
-  
+
+
+- [x] [lnmp](./lnmp/) php + mysql + redis
+- [x] [lnmp-mongodb](./lnmp_mongodb/) php + mongodb + redis
+- [x] [lnmn-mysql](./lnmn_mysql/) nodejs + mysql + redis 
+- [x] [lnmn-mongodb](./lnmn_mongodb/) nodejs + mongodb + redis
+
+请自行修改端口/路径
+
 #### redis
 
 - [x] [redis集群](./redis-cluster/README.md)
@@ -22,11 +27,12 @@
   
 - [ ] [mysql主从](./mysql-master-slave/README.md)  
 - [ ] [mycat中间件](./mycat/README.md) 
+- [x] [mysql备份](./mysql-backup/) 
 
 
 #### gitlab
 
-- [x] [gitlab](./gitlab/README.md)  [ok]
+- [x] [gitlab](./gitlab/README.md)  (包含 gitlab-runner 流水线)
 
 ## 参与贡献
 

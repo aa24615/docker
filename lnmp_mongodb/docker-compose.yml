@@ -1,0 +1,65 @@
+# yaml 配置实例
+version: '3'
+services:
+  mongo:
+    image: "mongo:4.2"
+    ports:
+      - "27017:27017"
+    volumes:
+      - "./mongo/data:/data/db"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+  redis:
+    image: "redis:6.2.5"
+    ports:
+      - "6379:6379"
+    volumes:
+      - "./redis/data:/data/redis/data"
+      - "./redis/redis.conf:/etc/redis.conf"
+    command: "redis-server /etc/redis.conf"
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+  nginx:
+    image: "nginx:1.14.0"
+    ports:
+      - "80:80"
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+    volumes:
+      - "./www/:/www/"
+      - "./nginx/vhost:/etc/nginx/conf.d"
+      - "./nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
+  php:
+    # build: ./php
+    image: "aa24615/php:7.4.6-fpm"
+    ports:
+      - "9000:9000"
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+    volumes:
+      - "../../:/www/"
+  php8:
+    # build: ./php8
+    image: "php:8.0.24-fpm"
+    ports:
+      - "8000:9000"
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+    volumes:
+      - "../../:/www/"
+networks:
+  webnet:
+    driver: bridge
