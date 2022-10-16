@@ -25,11 +25,21 @@ services:
     privileged: true
     networks:
       - webnet
+  php5:
+    build: ./php5
+    ports:
+      - "5000:9000"
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+    volumes:
+      - "../../:/www/"
   php:
     # build: ./php
     image: "aa24615/php:7.4.6-fpm"
     ports:
-      - "9000:9000"
+      - "7000:9000"
     restart: always
     privileged: true
     networks:
