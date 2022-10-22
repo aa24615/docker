@@ -47,8 +47,8 @@ services:
     volumes:
       - "../../:/www/"
   php8:
-    # build: ./php8
-    image: "php:8.0.24-fpm"
+    build: ./php8
+#    image: "php:8.0.24-fpm"
     ports:
       - "8000:9000"
     restart: always

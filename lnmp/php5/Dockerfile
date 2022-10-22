@@ -17,7 +17,7 @@ RUN docker-php-ext-install -j$(nproc) gd
 #    && docker-php-ext-enable redis
 
 #mysql
-RUN docker-php-ext-install pdo pdo_mysql mysqli
+RUN docker-php-ext-install pdo pdo_mysql mysql mysqli
 
 #zip
 RUN apt-get install -y libzip-dev
