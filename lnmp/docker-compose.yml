@@ -25,20 +25,32 @@ services:
     privileged: true
     networks:
       - webnet
-  php:
-    # build: ./php
-    image: "aa24615/php:7.4.6-fpm"
+  php5:
+    build: ./php5
     ports:
-      - "9000:9000"
+      - "5000:9000"
     restart: always
     privileged: true
     networks:
       - webnet
     volumes:
       - "../../:/www/"
+      - "./php5/php.ini:/usr/local/etc/php/conf.d/php.ini"
+  php:
+    # build: ./php
+    image: "aa24615/php:7.4.6-fpm"
+    ports:
+      - "7000:9000"
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+    volumes:
+      - "../../:/www/"
+      - "./php/php.ini:/usr/local/etc/php/conf.d/php.ini"
   php8:
-    # build: ./php8
-    image: "php:8.0.24-fpm"
+    build: ./php8
+#    image: "php:8.0.24-fpm"
     ports:
       - "8000:9000"
     restart: always
@@ -47,6 +59,7 @@ services:
       - webnet
     volumes:
       - "../../:/www/"
+      - "./php8/php.ini:/usr/local/etc/php/conf.d/php.ini"
   nginx:
     image: "nginx:1.14.0"
     ports:
