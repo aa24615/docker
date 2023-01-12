@@ -1,13 +1,9 @@
 # docker
 
-不正经的程序员之 [ 抢运维饭碗篇 ]
+读心印的docker笔记
 
-这是读心印的docker笔记
-
-> 注意: 本文档未发布,仅作参考
 
 #### web
-
 
 
 - [x] [lnmp](./lnmp/) php + mysql + redis
@@ -33,6 +29,10 @@
 #### gitlab
 
 - [x] [gitlab](./gitlab/README.md)  (包含 gitlab-runner 流水线)
+
+#### 企业微信-会话内容存档
+
+- [x] [wework-msgaudit-php-docker](https://github.com/aa24615/wework-msgaudit-php-docker)
 
 ## 参与贡献
 
