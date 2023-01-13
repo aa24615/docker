@@ -15,20 +15,20 @@
 
 #### redis
 
-- [x] [redis集群](./redis-cluster/README.md)
-- [x] [redis主从](./redis-master-slave/README.md) 
-- [ ] [redis哨兵](./redis-sentinel/README.md) 
+- [x] [redis集群](./redis-cluster/)
+- [x] [redis主从](./redis-master-slave/) 
+- [ ] [redis哨兵](./redis-sentinel/) 
 
 #### mysql
   
-- [ ] [mysql主从](./mysql-master-slave/README.md)  
-- [ ] [mycat中间件](./mycat/README.md) 
+- [ ] [mysql主从](./mysql-master-slave/)  
+- [ ] [mycat中间件](./mycat/) 
 - [x] [mysql备份](./mysql-backup/) 
 
 
 #### gitlab
 
-- [x] [gitlab](./gitlab/README.md)  (包含 gitlab-runner 流水线)
+- [x] [gitlab](./gitlab/)  (包含 gitlab-runner 流水线)
 
 #### 企业微信-会话内容存档
 
