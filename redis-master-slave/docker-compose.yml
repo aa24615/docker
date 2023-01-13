@@ -1,0 +1,30 @@
+# yaml 配置实例
+version: '3'
+services:
+  redis-master:
+    image: "redis:6.2.5"
+    ports:
+      - "6001:6379"
+    volumes:
+      - "./master:/data/redis/data"
+      - "./redis-master.conf:/etc/redis.conf"
+    command: "redis-server /etc/redis.conf"
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+  redis-slave:
+    image: "redis:6.2.5"
+    ports:
+      - "6002:6379"
+    volumes:
+      - "./slave:/data/redis/data"
+      - "./redis-slave.conf:/etc/redis.conf"
+    command: "redis-server /etc/redis.conf"
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+networks:
+  webnet:
+    driver: bridge

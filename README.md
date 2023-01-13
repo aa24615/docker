@@ -16,7 +16,7 @@
 #### redis
 
 - [x] [redis集群](./redis-cluster/README.md)
-- [ ] [redis主从](./redis-master-slave/README.md) 
+- [x] [redis主从](./redis-master-slave/README.md) 
 - [ ] [redis哨兵](./redis-sentinel/README.md) 
 
 #### mysql
