@@ -2,7 +2,7 @@
 version: '3'
 services:
   mysql:
-    image: "mysql:5.7"
+    image: "mysql:5.7.44"
     ports:
       - "3306:3306"
     volumes:
@@ -25,17 +25,17 @@ services:
     privileged: true
     networks:
       - webnet
-  php5:
-    build: ./php5
-    ports:
-      - "5000:9000"
-    restart: always
-    privileged: true
-    networks:
-      - webnet
-    volumes:
-      - "../../:/www/"
-      - "./php5/php.ini:/usr/local/etc/php/conf.d/php.ini"
+  # php5:
+  #   build: ./php5
+  #   ports:
+  #     - "5000:9000"
+  #   restart: always
+  #   privileged: true
+  #   networks:
+  #     - webnet
+  #   volumes:
+  #     - "../../:/www/"
+  #     - "./php5/php.ini:/usr/local/etc/php/conf.d/php.ini"
   php:
     # build: ./php
     image: "aa24615/php:7.4.6-fpm"
@@ -60,18 +60,18 @@ services:
     volumes:
       - "../../:/www/"
       - "./php8/php.ini:/usr/local/etc/php/conf.d/php.ini"
-  nginx:
-    image: "nginx:1.14.0"
-    ports:
-      - "80:80"
-    restart: always
-    privileged: true
-    networks:
-      - webnet
-    volumes:
-      - "../../:/www/"
-      - "./nginx/vhost:/etc/nginx/conf.d"
-      - "./nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
+  # nginx:
+  #   image: "nginx:1.14.0"
+  #   ports:
+  #     - "80:80"
+  #   restart: always
+  #   privileged: true
+  #   networks:
+  #     - webnet
+  #   volumes:
+  #     - "../../:/www/"
+  #     - "./nginx/vhost:/etc/nginx/conf.d"
+  #     - "./nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
 networks:
   webnet:
     driver: bridge

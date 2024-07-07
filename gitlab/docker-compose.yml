@@ -24,7 +24,7 @@ services:
     ports:
       - '8092:8093'
     volumes:
-      - './run/docker.sock:/var/run/docker.sock'
+      - '/var/run/docker.sock:/var/run/docker.sock'
       - './gitlab-runner-config:/etc/gitlab-runner'
 networks:
   gitlab-net:
