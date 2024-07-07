@@ -1,4 +1,4 @@
-#### 初始化6个主机
+#### redis集群
 
 ```shell
 sh start.sh
