@@ -1,0 +1,15 @@
+# yaml 配置实例
+version: "3"
+services:
+  bitwarden:
+    image:  registry.cn-hangzhou.aliyuncs.com/php127/vaultwarden_server:1.30.5
+    container_name: bitwarden
+    restart: always
+    ports:
+      - "3002:80"
+    volumes:
+      - ./vaultwarden-data:/data
+    environment:
+      WEBSOCKET_ENABLED: "true"
+      SIGNUPS_ALLOWED: "true"
+      WEB_VAULT_ENABLED: "true"

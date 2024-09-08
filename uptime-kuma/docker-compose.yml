@@ -1,0 +1,17 @@
+# yaml 配置实例
+version: '3'
+services:
+  uptime-kuma:
+    image: "registry.cn-hangzhou.aliyuncs.com/php127/uptime-kuma:1"
+    ports:
+      - "3001:3001"
+    volumes:
+      - "./kuma-data:/app/data"
+    restart: always
+    privileged: true
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge

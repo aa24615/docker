@@ -49,13 +49,13 @@ https://59qupr8z.mirror.aliyuncs.com
 - [x] [mysql备份](./mysql-backup/) 
 
 
-#### gitlab
+#### 其他
+
 
 - [x] [gitlab](./gitlab/)  (包含 gitlab-runner 流水线)
-
-#### 企业微信-会话内容存档
-
-- [x] [wework-msgaudit-php-docker](https://github.com/aa24615/wework-msgaudit-php-docker)
+- [x] [uptime-kuma](./uptime-kuma/) http监控
+- [x] [vaultwarden](./vaultwarden/) 密码库
+- [x] [wework-msgaudit-php-docker](https://github.com/aa24615/wework-msgaudit-php-docker) 企业微信-会话内容存档
 
 ## 参与贡献
 
