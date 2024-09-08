@@ -3,6 +3,20 @@
 读心印的docker笔记
 
 
+阿里镜像加速 
+```
+https://59qupr8z.mirror.aliyuncs.com
+```
+
+[comment]: <> (我的个人镜像仓库 )
+
+[comment]: <> (```)
+
+[comment]: <> (registry.cn-hangzhou.aliyuncs.com/php127)
+
+[comment]: <> (```)
+
+
 #### web
 
 
@@ -12,6 +26,15 @@
 - [x] [lnmn-mongodb](./lnmn_mongodb/) nodejs + mongodb + redis
 
 请自行修改端口/路径
+
+#### php
+
+- [x] [php7.4.33-fpm-alpine](./php/7.4/) php7.4.33-alpine fpm版
+- [x] [php7.4.33-cli-alpine](./php/7.4/cli-alpine) php7.4.33-alpine cli版
+- [x] [php7.4.33-cli-alpine-cron](./php/7.4/cli-alpine/cron) php7.4.33-alpine cli版 crontab定时任务
+- [x] [php7.4.33-cli-alpine-supervisord](./php/7.4/cli-alpine/supervisord) php7.4.33-alpine cli版 supervisord守护进程
+
+其他版本请自行修改
 
 #### redis
 
