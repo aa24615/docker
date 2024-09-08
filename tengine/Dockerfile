@@ -53,8 +53,9 @@ ENV CONFIG "\
         --with-file-aio \
         --with-http_v2_module \
         --add-module=modules/ngx_http_upstream_check_module \
+        --add-module=modules/ngx_http_upstream_vnswrr_module \
         --add-module=modules/headers-more-nginx-module-0.37 \
-	--add-module=modules/ngx_http_upstream_session_sticky_module \
+	    --add-module=modules/ngx_http_upstream_session_sticky_module \
         "
 RUN     addgroup -S nginx \
         && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
