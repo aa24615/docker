@@ -1,4 +1,4 @@
-FROM php:7.4.33-cli-alpine3.15
+FROM php:8.4-fpm-alpine3.20
 WORKDIR /www/
 
 
@@ -12,6 +12,8 @@ RUN curl -sSLf \
         https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
     chmod +x /usr/local/bin/install-php-extensions
 
+
+
 #ext
 
 RUN install-php-extensions gd
@@ -23,9 +25,3 @@ RUN install-php-extensions redis
 RUN install-php-extensions pdo
 RUN install-php-extensions pdo_mysql
 RUN install-php-extensions mysqli
-#RUN install-php-extensions ctype
-#RUN install-php-extensions mbstring
-#RUN install-php-extensions openssl
-#RUN install-php-extensions tokenizer
-#RUN install-php-extensions xml
-

@@ -1,4 +1,4 @@
-FROM php:7.4.33-cli-alpine3.15
+FROM php:8.4-cli-alpine3.20
 WORKDIR /www/
 
 
@@ -11,6 +11,8 @@ RUN curl -sSLf \
         -o /usr/local/bin/install-php-extensions \
         https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
     chmod +x /usr/local/bin/install-php-extensions
+
+
 
 #ext
 
@@ -29,3 +31,6 @@ RUN install-php-extensions mysqli
 #RUN install-php-extensions tokenizer
 #RUN install-php-extensions xml
 
+
+
+CMD sleep infinity
