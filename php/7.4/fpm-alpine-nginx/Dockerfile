@@ -5,7 +5,7 @@ WORKDIR /www/
 COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
 COPY ./php-fpm.conf /usr/local/etc/php-fpm.d/php-fpm.conf
 COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./defaul.conf /etc/nginx/conf.d/defaul.conf
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 
 
 
