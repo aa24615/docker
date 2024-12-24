@@ -7,22 +7,18 @@ COPY ./php-fpm.conf /usr/local/etc/php-fpm.d/php-fpm.conf
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 
+COPY ./install-php-extensions /usr/local/bin/install-php-extensions
 
+RUN chmod +x /usr/local/bin/install-php-extensions
 
 
 #git
 
 RUN apk add git
 
+#nginx
+
 RUN apk add nginx
-
-#install-php-extensions
-RUN curl -sSLf \
-        -o /usr/local/bin/install-php-extensions \
-        https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
-    chmod +x /usr/local/bin/install-php-extensions
-
-
 
 #ext
 
@@ -35,7 +31,6 @@ RUN install-php-extensions redis
 RUN install-php-extensions pdo
 RUN install-php-extensions pdo_mysql
 RUN install-php-extensions mysqli
-
 
 
 EXPOSE 80 443
