@@ -1,4 +1,4 @@
-FROM php:7.4.33-cli-alpine3.15
+FROM registry.cn-hangzhou.aliyuncs.com/php127/php:7.4.33-cli-alpine3.15
 WORKDIR /www/
 
 

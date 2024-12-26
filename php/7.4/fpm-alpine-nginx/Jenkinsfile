@@ -67,7 +67,20 @@ pipeline {
               "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
               "${CODING_ARTIFACTS_CREDENTIALS_ID}"
             ) {
-              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-cli-alpine-cron", "-f ./php/7.4/cli-alpine-cron/Dockerfile ./php/7.4/cli-alpine-cron/")
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-cli-alpine-cron", "-f ./php/7.4/cli-alpine/cron/Dockerfile ./php/7.4/cli-alpine/cron/")
+              dockerImage.push()
+            }
+        }
+      }
+    }
+    stage('构建:php74-cli-supervisord') {
+      steps {
+        script {
+            docker.withRegistry(
+              "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
+              "${CODING_ARTIFACTS_CREDENTIALS_ID}"
+            ) {
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-cli-alpine-supervisord", "-f ./php/7.4/cli-alpine/supervisord/Dockerfile ./php/7.4/cli-alpine/supervisord/")
               dockerImage.push()
             }
         }
