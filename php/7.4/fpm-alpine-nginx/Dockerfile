@@ -1,9 +1,5 @@
 FROM php:7.4.33-fpm-alpine3.15
 WORKDIR /www/
-#
-COPY ./install-php-extensions /usr/local/bin/install-php-extensions
-
-RUN chmod 777 /usr/local/bin/install-php-extensions
 
 #git
 
@@ -14,6 +10,9 @@ RUN apk add git
 RUN apk add nginx
 
 #ext
+
+COPY ./install-php-extensions /bin/install-php-extensions
+RUN chmod 777 /bin/install-php-extensions
 
 RUN install-php-extensions gd
 RUN install-php-extensions zip
