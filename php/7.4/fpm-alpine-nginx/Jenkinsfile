@@ -24,7 +24,7 @@ pipeline {
               "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
               "${CODING_ARTIFACTS_CREDENTIALS_ID}"
             ) {
-              def dockerImage = docker.build("nginx:7.4.33-fpm-alpine-nginx", "-f ${DOCKERFILE_PATH} ${DOCKER_BUILD_CONTEXT}")
+              def dockerImage = docker.build("nginx:7.4.33-fpm-alpine-nginx", "-f ./php/7.4/fpm-alpine-nginx/Dockerfile .")
               dockerImage.push()
             }
         }
