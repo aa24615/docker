@@ -18,7 +18,7 @@ pipeline {
       }
     }
 
-    stage('构建镜像:php74-fpm-nginx') {
+    stage('构建:php74-fpm-nginx') {
       steps {
         script {
             docker.withRegistry(
@@ -32,7 +32,7 @@ pipeline {
       }
     }
 
-    stage('构建镜像:php74-fpm') {
+    stage('构建:php74-fpm') {
       steps {
         script {
             docker.withRegistry(
@@ -40,6 +40,34 @@ pipeline {
               "${CODING_ARTIFACTS_CREDENTIALS_ID}"
             ) {
               def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-fpm-alpine", "-f ./php/7.4/fpm-alpine/Dockerfile ./php/7.4/fpm-alpine/")
+              dockerImage.push()
+            }
+        }
+      }
+    }
+
+    stage('构建:php74-cli') {
+      steps {
+        script {
+            docker.withRegistry(
+              "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
+              "${CODING_ARTIFACTS_CREDENTIALS_ID}"
+            ) {
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-cli-alpine", "-f ./php/7.4/cli-alpine/Dockerfile ./php/7.4/cli-alpine/")
+              dockerImage.push()
+            }
+        }
+      }
+    }
+
+    stage('构建:php74-cli-cron') {
+      steps {
+        script {
+            docker.withRegistry(
+              "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
+              "${CODING_ARTIFACTS_CREDENTIALS_ID}"
+            ) {
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-cli-alpine-cron", "-f ./php/7.4/cli-alpine-cron/Dockerfile ./php/7.4/cli-alpine-cron/")
               dockerImage.push()
             }
         }
