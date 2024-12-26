@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     CODING_DOCKER_REG_HOST = "${CCI_CURRENT_TEAM}-docker.pkg.${CCI_CURRENT_DOMAIN}"
-    CODING_DOCKER_IMAGE_NAME = "${PROJECT_NAME.toLowerCase()}/${DOCKER_REPO_NAME}/${DOCKER_IMAGE_NAME}"
+    CODING_DOCKER_IMAGE_NAME = "${PROJECT_NAME.toLowerCase()}/${DOCKER_REPO_NAME}/php:7.4.33-fpm-alpine-nginx"
   }
   stages {
     stage("检出") {
@@ -24,7 +24,7 @@ pipeline {
               "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
               "${CODING_ARTIFACTS_CREDENTIALS_ID}"
             ) {
-              def dockerImage = docker.build("nginx:7.4.33-fpm-alpine-nginx", "-f ./php/7.4/fpm-alpine-nginx/Dockerfile ./php/7.4/fpm-alpine-nginx/")
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}", "-f ./php/7.4/fpm-alpine-nginx/Dockerfile ./php/7.4/fpm-alpine-nginx/")
               dockerImage.push()
             }
         }
