@@ -1,20 +1,17 @@
 FROM php:7.4.33-fpm-alpine3.15
 WORKDIR /www/
 
+COPY ./install-php-extensions /usr/local/bin/install-php-extensions
+
+RUN chmod +x /usr/local/bin/install-php-extensions
 
 #git
 
 RUN apk add git
 
+#nginx
+
 RUN apk add nginx
-
-#install-php-extensions
-RUN curl -sSLf \
-        -o /usr/local/bin/install-php-extensions \
-        https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
-    chmod +x /usr/local/bin/install-php-extensions
-
-
 
 #ext
 
@@ -33,7 +30,6 @@ COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
 COPY ./php-fpm.conf /usr/local/etc/php-fpm.d/php-fpm.conf
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY ./default.conf /etc/nginx/conf.d/default.conf
-
 
 
 EXPOSE 80 443
