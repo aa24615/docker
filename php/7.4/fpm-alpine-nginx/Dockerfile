@@ -2,14 +2,6 @@ FROM php:7.4.33-fpm-alpine3.15
 WORKDIR /www/
 
 
-COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
-COPY ./php-fpm.conf /usr/local/etc/php-fpm.d/php-fpm.conf
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./default.conf /etc/nginx/conf.d/default.conf
-
-
-
-
 #git
 
 RUN apk add git
@@ -35,6 +27,12 @@ RUN install-php-extensions redis
 RUN install-php-extensions pdo
 RUN install-php-extensions pdo_mysql
 RUN install-php-extensions mysqli
+
+
+COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
+COPY ./php-fpm.conf /usr/local/etc/php-fpm.d/php-fpm.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 
 
 
