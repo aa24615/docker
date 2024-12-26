@@ -55,6 +55,8 @@ https://59qupr8z.mirror.aliyuncs.com
 - [x] [gitlab](./gitlab/)  (包含 gitlab-runner 流水线)
 - [x] [uptime-kuma](./uptime-kuma/) http监控
 - [x] [vaultwarden](./vaultwarden/) 密码库
+- [x] [goaccess](./goaccess/) 日志分析
+- [x] [coscmd](./coscmd/) 腾讯cos备份
 - [x] [tengine](./tengine/) 阿里优化版nginx
 - [x] [mycli](./mycli/) 一个很好用的mysql命令行
 - [x] [wework-msgaudit-php-docker](https://github.com/aa24615/wework-msgaudit-php-docker) 企业微信-会话内容存档

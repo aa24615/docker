@@ -5,5 +5,4 @@ WORKDIR /www/
 RUN pip install coscmd
 RUN apk add zip
 
-#COPY ./test.py /www/test.py
-#CMD ["python", "test.py"]
+CMD sleep infinity
