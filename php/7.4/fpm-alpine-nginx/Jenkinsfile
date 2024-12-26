@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     CODING_DOCKER_REG_HOST = "${CCI_CURRENT_TEAM}-docker.pkg.${CCI_CURRENT_DOMAIN}"
-    CODING_DOCKER_IMAGE_NAME = "${PROJECT_NAME.toLowerCase()}/${DOCKER_REPO_NAME}/php:7.4.33-fpm-alpine-nginx"
+    CODING_DOCKER_IMAGE_NAME = "${PROJECT_NAME.toLowerCase()}/${DOCKER_REPO_NAME}"
   }
   stages {
     stage("检出") {
@@ -17,14 +17,27 @@ pipeline {
         )
       }
     }
-    stage('构建镜像并推送到 CODING Docker 制品库') {
+    stage('构建镜像:php74-fpm-nginx') {
       steps {
         script {
             docker.withRegistry(
               "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
               "${CODING_ARTIFACTS_CREDENTIALS_ID}"
             ) {
-              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}", "-f ./php/7.4/fpm-alpine-nginx/Dockerfile ./php/7.4/fpm-alpine-nginx/")
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-fpm-alpine-nginx", "-f ./php/7.4/fpm-alpine-nginx/Dockerfile ./php/7.4/fpm-alpine-nginx/")
+              dockerImage.push()
+            }
+        }
+      }
+    },
+    stage('构建镜像:php74-fpm') {
+      steps {
+        script {
+            docker.withRegistry(
+              "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
+              "${CODING_ARTIFACTS_CREDENTIALS_ID}"
+            ) {
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-fpm-alpine", "-f ./php/7.4/fpm-alpine/Dockerfile ./php/7.4/fpm-alpine/")
               dockerImage.push()
             }
         }
