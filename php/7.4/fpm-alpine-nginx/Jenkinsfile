@@ -17,6 +17,7 @@ pipeline {
         )
       }
     }
+
     stage('构建镜像:php74-fpm-nginx') {
       steps {
         script {
@@ -29,7 +30,8 @@ pipeline {
             }
         }
       }
-    },
+    }
+
     stage('构建镜像:php74-fpm') {
       steps {
         script {
