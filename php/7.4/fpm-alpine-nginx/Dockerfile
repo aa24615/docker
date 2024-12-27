@@ -29,10 +29,12 @@ COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
 COPY ./php-fpm.conf /usr/local/etc/php-fpm.d/php-fpm.conf
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY ./start.sh /root/start.sh
 
+RUN chmod 777 /root/start.sh
 
 EXPOSE 80
 
 STOPSIGNAL SIGTERM
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "start.sh"]
