@@ -9,10 +9,14 @@ RUN apk add git
 
 RUN apk add nginx
 
-#ext
 
-COPY ./install-php-extensions /bin/install-php-extensions
-RUN chmod 777 /bin/install-php-extensions
+#install-php-extensions
+RUN curl -sSLf \
+        -o /usr/local/bin/install-php-extensions \
+        https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
+    chmod +x /usr/local/bin/install-php-extensions
+
+#ext
 
 RUN install-php-extensions gd
 RUN install-php-extensions zip
@@ -23,11 +27,21 @@ RUN install-php-extensions redis
 RUN install-php-extensions pdo
 RUN install-php-extensions pdo_mysql
 RUN install-php-extensions mysqli
+RUN install-php-extensions opcache
 
 
 COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
-COPY ./php-fpm.conf /usr/local/etc/php-fpm.d/php-fpm.conf
+COPY ./php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./enable-php.conf /etc/nginx/enable-php.conf
+COPY ./pathinfo.conf /etc/nginx/pathinfo.conf
+COPY ./fastcgi.conf /etc/nginx/fastcgi.conf
+COPY ./index.php /www/index.php
+COPY ./index.html /www/index.html
+
+
+RUN mkdir -p /run/php/
+RUN chmod 777 /run/php/
 
 COPY ./start.sh /root/start.sh
 
