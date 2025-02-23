@@ -29,20 +29,37 @@ RUN install-php-extensions pdo_mysql
 RUN install-php-extensions mysqli
 RUN install-php-extensions opcache
 
-
+#php
 COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
-COPY ./php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
+
+#php-fpm
+COPY ./php-fpm.conf /usr/local/etc/php-fpm.conf
+
+#nginx
 COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 COPY ./enable-php.conf /etc/nginx/enable-php.conf
 COPY ./pathinfo.conf /etc/nginx/pathinfo.conf
 COPY ./fastcgi.conf /etc/nginx/fastcgi.conf
+
+#www
 COPY ./index.php /www/index.php
 COPY ./index.html /www/index.html
 
 
-RUN mkdir -p /run/php/
-RUN chmod 777 /run/php/
 
+#mkdir
+RUN mkdir -p /var/run/php/
+RUN mkdir -p /var/log/php/
+
+#chmod
+RUN chmod -R 755 /var/run/php/
+RUN chmod -R 755 /var/log/php/
+RUN chmod -R 755 /var/log/nginx/
+
+RUN chmod -R 755 /etc/nginx/
+
+#run
 COPY ./start.sh /root/start.sh
 
 RUN chmod 777 /root/start.sh

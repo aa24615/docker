@@ -25,3 +25,4 @@ RUN install-php-extensions redis
 RUN install-php-extensions pdo
 RUN install-php-extensions pdo_mysql
 RUN install-php-extensions mysqli
+RUN install-php-extensions opcache
