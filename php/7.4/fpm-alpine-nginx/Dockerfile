@@ -1,4 +1,4 @@
-FROM cloudbase-839024615-docker.pkg.coding.net/joy127/docker/php:7.4.33-fpm-alpine3.15
+FROM php:7.4.33-fpm-alpine3.15
 WORKDIR /www/
 
 #git
