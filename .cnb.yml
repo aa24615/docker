@@ -37,3 +37,9 @@ master:
             - cd ./php/7.4/cli-alpine/supervisord
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine-supervisord .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine-supervisord
+        - name: 构建:php78-cli
+          script:
+            - cd ./php/8.4/cli-alpine
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4-cli-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4-cli-alpine
+      

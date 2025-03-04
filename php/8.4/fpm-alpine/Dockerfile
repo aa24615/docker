@@ -16,6 +16,7 @@ RUN curl -sSLf \
 
 #ext
 
+
 RUN install-php-extensions gd
 RUN install-php-extensions zip
 RUN install-php-extensions bcmath
@@ -25,4 +26,9 @@ RUN install-php-extensions redis
 RUN install-php-extensions pdo
 RUN install-php-extensions pdo_mysql
 RUN install-php-extensions mysqli
+RUN install-php-extensions ctype
+RUN install-php-extensions mbstring
+RUN install-php-extensions openssl
+RUN install-php-extensions tokenizer
+RUN install-php-extensions xml
 RUN install-php-extensions opcache
