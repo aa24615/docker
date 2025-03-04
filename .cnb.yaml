@@ -1,0 +1,34 @@
+main:
+  push:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        #volumes缓存：https://docs.cnb.cool/zh/grammar/pipeline.html#volumes
+        volumes:
+          # 使用缓存，同时更新
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+        - name: 构建:php74-fpm-nginx
+          script:
+            - docker build -f ./php/7.4/fpm-alpine-nginx/Dockerfile -t ${CNB_DOCKER_REGISTRY}/php:7.4.33-fpm-alpine-nginx .
+            - docker push ${CNB_DOCKER_REGISTRY}/php:7.4.33-fpm-alpine-nginx
+        - name: 构建:php74-fpm
+          script:
+            - docker build -f ./php/7.4/fpm-alpine/Dockerfile -t ${CNB_DOCKER_REGISTRY}/php:7.4.33-fpm-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php:7.4.33-fpm-alpine
+        - name: 构建:php74-cli
+          script:
+            - docker build -f ./php/7.4/cli-alpine/Dockerfile -t ${CNB_DOCKER_REGISTRY}/php:7.4.33-cli-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php:7.4.33-cli-alpine
+        - name: 构建:php74-cli-cron
+          script:
+            - docker build -f ./php/7.4/cli-alpine/cron/Dockerfile -t ${CNB_DOCKER_REGISTRY}/php:7.4.33-cli-alpine-cron .
+            - docker push ${CNB_DOCKER_REGISTRY}/php:7.4.33-cli-alpine-cron
+        - name: 构建:php74-cli-supervisord
+          script:
+            - docker build -f ./php/7.4/cli-alpine/supervisord/Dockerfile -t ${CNB_DOCKER_REGISTRY}/php:7.4.33-cli-alpine-supervisord .
+            - docker push ${CNB_DOCKER_REGISTRY}/php:7.4.33-cli-alpine-supervisord
