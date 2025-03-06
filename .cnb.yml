@@ -12,6 +12,11 @@ master:
         - name: docker login
           script:
             - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+        - name: 构建:php73-fpm-nginx
+          script:
+            - cd ./php/7.3/fpm-alpine-nginx
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.3.33-fpm-alpine-nginx .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.3.33-fpm-alpine-nginx
         - name: 构建:php74-fpm-nginx
           script:
             - cd ./php/7.4/fpm-alpine-nginx
