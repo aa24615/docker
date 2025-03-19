@@ -5,6 +5,7 @@ WORKDIR /www/
 #git
 
 RUN apk add git
+RUN apk add bash
 
 #install-php-extensions
 RUN curl -sSLf \
