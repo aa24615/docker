@@ -2,10 +2,22 @@ FROM php:8.4-fpm-alpine3.20
 WORKDIR /www/
 
 
+# 默认时区
+# 安装 tzdata 包
+RUN apk add --no-cache tzdata
+
+# 设置环境变量 TZ 为你想要的时区
+ENV TZ=Asia/Shanghai
+
+# 创建符号链接以应用时区
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+
 #git
 
 RUN apk add git
 RUN apk add bash
+RUN apk add vim
 
 #install-php-extensions
 RUN curl -sSLf \
