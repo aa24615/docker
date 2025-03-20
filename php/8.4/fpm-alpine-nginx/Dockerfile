@@ -1,6 +1,9 @@
 FROM php:8.4-fpm-alpine
 WORKDIR /www/
 
+#nginx
+RUN apk add nginx
+
 #php
 COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
 
