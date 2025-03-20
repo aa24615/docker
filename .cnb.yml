@@ -16,7 +16,8 @@ master:
         - name: 构建:php84-fpm
           script:
             - cd ./php/8.4/fpm-alpine
-            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:8.4-fpm-alpine .
+            - docker build -t php:8.4-fpm-alpine .
+            - docker tag php:8.4-fpm-alpine ${CNB_DOCKER_REGISTRY}/php127/docker/php:8.4-fpm-alpine
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:8.4-fpm-alpine
 
         - name: 构建:php84-fpm-nginx
