@@ -45,3 +45,4 @@ RUN install-php-extensions openssl
 RUN install-php-extensions tokenizer
 RUN install-php-extensions xml
 RUN install-php-extensions opcache
+RUN install-php-extensions pcntl
