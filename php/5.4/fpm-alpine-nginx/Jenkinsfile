@@ -1,0 +1,90 @@
+pipeline {
+  agent any
+  environment {
+    CODING_DOCKER_REG_HOST = "${CCI_CURRENT_TEAM}-docker.pkg.${CCI_CURRENT_DOMAIN}"
+    CODING_DOCKER_IMAGE_NAME = "${PROJECT_NAME.toLowerCase()}/${DOCKER_REPO_NAME}"
+  }
+  stages {
+    stage("检出") {
+      steps {
+        checkout(
+          [$class: 'GitSCM',
+          branches: [[name: GIT_BUILD_REF]],
+          userRemoteConfigs: [[
+            url: GIT_REPO_URL,
+              credentialsId: CREDENTIALS_ID
+            ]]]
+        )
+      }
+    }
+
+    stage('构建:php74-fpm-nginx') {
+      steps {
+        script {
+            docker.withRegistry(
+              "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
+              "${CODING_ARTIFACTS_CREDENTIALS_ID}"
+            ) {
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-fpm-alpine-nginx", "-f ./php/7.4/fpm-alpine-nginx/Dockerfile ./php/7.4/fpm-alpine-nginx/")
+              dockerImage.push()
+            }
+        }
+      }
+    }
+
+    stage('构建:php74-fpm') {
+      steps {
+        script {
+            docker.withRegistry(
+              "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
+              "${CODING_ARTIFACTS_CREDENTIALS_ID}"
+            ) {
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-fpm-alpine", "-f ./php/7.4/fpm-alpine/Dockerfile ./php/7.4/fpm-alpine/")
+              dockerImage.push()
+            }
+        }
+      }
+    }
+
+    stage('构建:php74-cli') {
+      steps {
+        script {
+            docker.withRegistry(
+              "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
+              "${CODING_ARTIFACTS_CREDENTIALS_ID}"
+            ) {
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-cli-alpine", "-f ./php/7.4/cli-alpine/Dockerfile ./php/7.4/cli-alpine/")
+              dockerImage.push()
+            }
+        }
+      }
+    }
+
+    stage('构建:php74-cli-cron') {
+      steps {
+        script {
+            docker.withRegistry(
+              "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
+              "${CODING_ARTIFACTS_CREDENTIALS_ID}"
+            ) {
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-cli-alpine-cron", "-f ./php/7.4/cli-alpine/cron/Dockerfile ./php/7.4/cli-alpine/cron/")
+              dockerImage.push()
+            }
+        }
+      }
+    }
+    stage('构建:php74-cli-supervisord') {
+      steps {
+        script {
+            docker.withRegistry(
+              "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
+              "${CODING_ARTIFACTS_CREDENTIALS_ID}"
+            ) {
+              def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}/php:7.4.33-cli-alpine-supervisord", "-f ./php/7.4/cli-alpine/supervisord/Dockerfile ./php/7.4/cli-alpine/supervisord/")
+              dockerImage.push()
+            }
+        }
+      }
+    }
+  }
+}

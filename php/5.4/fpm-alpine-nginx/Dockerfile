@@ -1,24 +1,14 @@
 FROM php:7.4.33-fpm-alpine3.15
 WORKDIR /www/
 
-
-# 默认时区
-# 安装 tzdata 包
-RUN apk add --no-cache tzdata
-
-# 设置环境变量 TZ 为你想要的时区
-ENV TZ=Asia/Shanghai
-
-# 创建符号链接以应用时区
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-
-
 #git
 
 RUN apk add git
-RUN apk add bash
-RUN apk add vim
+
+#nginx
+
+RUN apk add nginx
+
 
 #install-php-extensions
 RUN curl -sSLf \
@@ -43,3 +33,45 @@ RUN install-php-extensions openssl
 RUN install-php-extensions tokenizer
 RUN install-php-extensions xml
 RUN install-php-extensions opcache
+
+
+#php
+COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
+
+#php-fpm
+COPY ./php-fpm.conf /usr/local/etc/php-fpm.conf
+
+#nginx
+COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY ./enable-php.conf /etc/nginx/enable-php.conf
+COPY ./pathinfo.conf /etc/nginx/pathinfo.conf
+COPY ./fastcgi.conf /etc/nginx/fastcgi.conf
+
+#www
+COPY ./index.php /www/index.php
+COPY ./index.html /www/index.html
+
+
+
+#mkdir
+RUN mkdir -p /var/run/php/
+RUN mkdir -p /var/log/php/
+
+#chmod
+RUN chmod -R 755 /var/run/php/
+RUN chmod -R 755 /var/log/php/
+RUN chmod -R 755 /var/log/nginx/
+
+RUN chmod -R 755 /etc/nginx/
+
+#run
+COPY ./start.sh /root/start.sh
+
+RUN chmod 777 /root/start.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGTERM
+
+CMD ["sh", "/root/start.sh"]
