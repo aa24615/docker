@@ -12,9 +12,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 WORKDIR /app
 
 #npm
-RUN npm install -g yarn
 RUN npm install -g pnpm
-RUN npm install -g cnpm
-RUN npm install -g yarn
 
 CMD ["tail", "-f", "/dev/null"]
