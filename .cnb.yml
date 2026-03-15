@@ -68,3 +68,33 @@ master:
             - cd ./php/7.3/fpm-alpine-nginx
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.3.33-fpm-alpine-nginx .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.3.33-fpm-alpine-nginx
+
+        - name: 构建:nodejs24
+          script:
+            - cd ./nodejs/24
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:24-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:24-alpine
+
+        - name: 构建:nodejs22
+          script:
+            - cd ./nodejs/22
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:22-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:22-alpine
+
+        - name: 构建:nodejs20
+          script:
+            - cd ./nodejs/20
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:20-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:20-alpine
+
+        - name: 构建:nodejs18
+          script:
+            - cd ./nodejs/18
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:18-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:18-alpine
+
+        - name: 构建:nodejs16
+          script:
+            - cd ./nodejs/16
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:16-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:16-alpine
