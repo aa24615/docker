@@ -1,0 +1,27 @@
+branch:
+  - reg: ^master$
+    buttons:
+      - name: 构建全部
+        description: 构建所有镜像
+        event: web_trigger_all
+        isDefault: true
+
+      - name: 构建 Nodejs
+        description: 构建 Nodejs 镜像 (16/18/20/22/24)
+        event: web_trigger_nodejs
+        groupName: Nodejs
+
+      - name: 构建 PHP 8.4
+        description: 构建 PHP 8.4 镜像 (fpm/fpm-nginx/cli)
+        event: web_trigger_php84
+        groupName: PHP
+
+      - name: 构建 PHP 7.4
+        description: 构建 PHP 7.4 镜像 (fpm-nginx/fpm/cli/cli-cron/cli-supervisord)
+        event: web_trigger_php74
+        groupName: PHP
+
+      - name: 构建 PHP 7.3
+        description: 构建 PHP 7.3 镜像 (fpm-nginx)
+        event: web_trigger_php73
+        groupName: PHP

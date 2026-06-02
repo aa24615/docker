@@ -1,18 +1,15 @@
 master:
-  push:
+  web_trigger_all:
     - services:
         - docker
       docker:
         image: cnbcool/default-build-env:latest
-        #volumes缓存：https://docs.cnb.cool/zh/grammar/pipeline.html#volumes
         volumes:
-          # 使用缓存，同时更新
           - /root/
       stages:
         - name: docker login
           script:
             - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
-
 
         - name: 构建:nodejs24
           script:
@@ -44,8 +41,6 @@ master:
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:16-alpine .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:16-alpine
 
-
-
         - name: 构建:php84-fpm
           script:
             - cd ./php/8.4/fpm-alpine
@@ -70,31 +65,163 @@ master:
             - cd ./php/7.4/fpm-alpine-nginx
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-fpm-alpine-nginx .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-fpm-alpine-nginx
-        
+
         - name: 构建:php74-fpm
           script:
             - cd ./php/7.4/fpm-alpine
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-fpm-alpine .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-fpm-alpine
+
         - name: 构建:php74-cli
           script:
             - cd ./php/7.4/cli-alpine
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine
-        
+
         - name: 构建:php74-cli-cron
           script:
             - cd ./php/7.4/cli-alpine/cron
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine-cron .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine-cron
-        
+
         - name: 构建:php74-cli-supervisord
           script:
             - cd ./php/7.4/cli-alpine/supervisord
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine-supervisord .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine-supervisord
 
+        - name: 构建:php73-fpm-nginx
+          script:
+            - cd ./php/7.3/fpm-alpine-nginx
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.3.33-fpm-alpine-nginx .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.3.33-fpm-alpine-nginx
 
+  web_trigger_nodejs:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:nodejs24
+          script:
+            - cd ./nodejs/24
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:24-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:24-alpine
+
+        - name: 构建:nodejs22
+          script:
+            - cd ./nodejs/22
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:22-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:22-alpine
+
+        - name: 构建:nodejs20
+          script:
+            - cd ./nodejs/20
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:20-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:20-alpine
+
+        - name: 构建:nodejs18
+          script:
+            - cd ./nodejs/18
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:18-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:18-alpine
+
+        - name: 构建:nodejs16
+          script:
+            - cd ./nodejs/16
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:16-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nodejs:16-alpine
+
+  web_trigger_php84:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:php84-fpm
+          script:
+            - cd ./php/8.4/fpm-alpine
+            - docker build -t php:8.4-fpm-alpine .
+            - docker tag php:8.4-fpm-alpine ${CNB_DOCKER_REGISTRY}/php127/docker/php:8.4-fpm-alpine
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:8.4-fpm-alpine
+
+        - name: 构建:php84-fpm-nginx
+          script:
+            - cd ./php/8.4/fpm-alpine-nginx
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:8.4-fpm-alpine-nginx .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:8.4-fpm-alpine-nginx
+
+        - name: 构建:php84-cli
+          script:
+            - cd ./php/8.4/cli-alpine
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:8.4-cli-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:8.4-cli-alpine
+
+  web_trigger_php74:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:php74-fpm-nginx
+          script:
+            - cd ./php/7.4/fpm-alpine-nginx
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-fpm-alpine-nginx .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-fpm-alpine-nginx
+
+        - name: 构建:php74-fpm
+          script:
+            - cd ./php/7.4/fpm-alpine
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-fpm-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-fpm-alpine
+
+        - name: 构建:php74-cli
+          script:
+            - cd ./php/7.4/cli-alpine
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine
+
+        - name: 构建:php74-cli-cron
+          script:
+            - cd ./php/7.4/cli-alpine/cron
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine-cron .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine-cron
+
+        - name: 构建:php74-cli-supervisord
+          script:
+            - cd ./php/7.4/cli-alpine/supervisord
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine-supervisord .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.4.33-cli-alpine-supervisord
+
+  web_trigger_php73:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
 
         - name: 构建:php73-fpm-nginx
           script:
