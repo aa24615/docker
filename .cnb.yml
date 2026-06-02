@@ -228,3 +228,135 @@ master:
             - cd ./php/7.3/fpm-alpine-nginx
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.3.33-fpm-alpine-nginx .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/php:7.3.33-fpm-alpine-nginx
+
+  web_trigger_ide_all:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:ide-node24
+          script:
+            - cd ./ide/24
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node24 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node24
+
+        - name: 构建:ide-node22
+          script:
+            - cd ./ide/22
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node22 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node22
+
+        - name: 构建:ide-node20
+          script:
+            - cd ./ide/20
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node20 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node20
+
+        - name: 构建:ide-node18
+          script:
+            - cd ./ide/18
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node18 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node18
+
+        - name: 构建:ide-node16
+          script:
+            - cd ./ide/16
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node16 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node16
+
+  web_trigger_ide_node24:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:ide-node24
+          script:
+            - cd ./ide/24
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node24 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node24
+
+  web_trigger_ide_node22:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:ide-node22
+          script:
+            - cd ./ide/22
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node22 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node22
+
+  web_trigger_ide_node20:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:ide-node20
+          script:
+            - cd ./ide/20
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node20 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node20
+
+  web_trigger_ide_node18:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:ide-node18
+          script:
+            - cd ./ide/18
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node18 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node18
+
+  web_trigger_ide_node16:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:ide-node16
+          script:
+            - cd ./ide/16
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node16 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node16

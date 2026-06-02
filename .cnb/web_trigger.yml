@@ -25,3 +25,33 @@ branch:
         description: 构建 PHP 7.3 镜像 (fpm-nginx)
         event: web_trigger_php73
         groupName: PHP
+
+      - name: 构建开发环境(全部)
+        description: 构建所有 Node 开发环境镜像 (16/18/20/22/24)
+        event: web_trigger_ide_all
+        groupName: 开发环境
+
+      - name: 构建 IDE Node24
+        description: 构建 Node 24 开发环境镜像 (中文/pnpm/code-server)
+        event: web_trigger_ide_node24
+        groupName: 开发环境
+
+      - name: 构建 IDE Node22
+        description: 构建 Node 22 开发环境镜像 (中文/pnpm/code-server)
+        event: web_trigger_ide_node22
+        groupName: 开发环境
+
+      - name: 构建 IDE Node20
+        description: 构建 Node 20 开发环境镜像 (中文/pnpm/code-server)
+        event: web_trigger_ide_node20
+        groupName: 开发环境
+
+      - name: 构建 IDE Node18
+        description: 构建 Node 18 开发环境镜像 (中文/pnpm/code-server)
+        event: web_trigger_ide_node18
+        groupName: 开发环境
+
+      - name: 构建 IDE Node16
+        description: 构建 Node 16 开发环境镜像 (中文/pnpm/code-server)
+        event: web_trigger_ide_node16
+        groupName: 开发环境
