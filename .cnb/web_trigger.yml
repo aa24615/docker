@@ -55,3 +55,8 @@ branch:
         description: 构建 Node 16 开发环境镜像 (中文/pnpm/code-server)
         event: web_trigger_ide_node16
         groupName: 开发环境
+
+      - name: 构建 Nginx
+        description: 构建 Nginx 镜像 (1.26.2-alpine)
+        event: web_trigger_nginx
+        groupName: Nginx
