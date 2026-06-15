@@ -277,24 +277,6 @@ master:
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node16 .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/ide:node16
 
-  web_trigger_nginx:
-    - services:
-        - docker
-      docker:
-        image: cnbcool/default-build-env:latest
-        volumes:
-          - /root/
-      stages:
-        - name: docker login
-          script:
-            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
-
-        - name: 构建:nginx
-          script:
-            - cd ./nginx
-            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nginx:1.26.2 .
-            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nginx:1.26.2
-
   web_trigger_ide_node24:
     - services:
         - docker
