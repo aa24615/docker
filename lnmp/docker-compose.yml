@@ -14,7 +14,7 @@ services:
     networks:
       - webnet
   redis:
-    image: "redis:6.2.5"
+    image: "docker.cnb.cool/php127/docker/redis:6.2.5"
     ports:
       - "6379:6379"
     volumes:
@@ -62,7 +62,7 @@ services:
 #      - "../../:/www/"
 #      - "./php8/php.ini:/usr/local/etc/php/conf.d/php.ini"
   nginx:
-    image: "nginx:1.14.0"
+    image: "docker.cnb.cool/php127/docker/nginx:1.26.2"
     ports:
       - "80:80"
     restart: always
