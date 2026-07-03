@@ -102,6 +102,18 @@ master:
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nginx:1.26.2 .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nginx:1.26.2
 
+        - name: 构建:mysql57
+          script:
+            - cd ./mysql/5.7
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/mysql:5.7.44 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/mysql:5.7.44
+
+        - name: 构建:redis625
+          script:
+            - cd ./redis/6.2.5
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/redis:6.2.5 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/redis:6.2.5
+
   web_trigger_nodejs:
     - services:
         - docker
@@ -384,3 +396,69 @@ master:
             - cd ./nginx
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nginx:1.26.2 .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nginx:1.26.2
+
+  web_trigger_mysql:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:mysql57
+          script:
+            - cd ./mysql/5.7
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/mysql:5.7.44 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/mysql:5.7.44
+
+  web_trigger_redis:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:redis625
+          script:
+            - cd ./redis/6.2.5
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/redis:6.2.5 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/redis:6.2.5
+
+  web_trigger_lnmp:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:nginx
+          script:
+            - cd ./nginx
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/nginx:1.26.2 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/nginx:1.26.2
+
+        - name: 构建:mysql57
+          script:
+            - cd ./mysql/5.7
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/mysql:5.7.44 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/mysql:5.7.44
+
+        - name: 构建:redis625
+          script:
+            - cd ./redis/6.2.5
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/redis:6.2.5 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/redis:6.2.5

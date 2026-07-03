@@ -59,4 +59,19 @@ branch:
       - name: 构建 Nginx
         description: 构建 Nginx 镜像 (1.26.2-alpine)
         event: web_trigger_nginx
-        groupName: Nginx
+        groupName: LNMP
+
+      - name: 构建 MySQL 5.7
+        description: 构建 MySQL 5.7.44 镜像
+        event: web_trigger_mysql
+        groupName: LNMP
+
+      - name: 构建 Redis 6.2.5
+        description: 构建 Redis 6.2.5 镜像
+        event: web_trigger_redis
+        groupName: LNMP
+
+      - name: 构建 LNMP 基础镜像
+        description: 构建 Nginx + MySQL + Redis 全部镜像
+        event: web_trigger_lnmp
+        groupName: LNMP

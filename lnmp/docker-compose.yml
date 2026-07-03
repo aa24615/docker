@@ -41,6 +41,7 @@ services:
     image: "docker.cnb.cool/php127/docker/php:7.4.33-fpm-alpine"
     ports:
       - "7000:9000"
+      - "8090:8090"
     restart: always
     privileged: true
     networks:
