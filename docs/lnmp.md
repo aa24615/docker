@@ -7,7 +7,7 @@
 | 组件 | 版本 | Dockerfile | 镜像地址 |
 |------|------|------------|----------|
 | MySQL | 5.7.44 (Oracle Linux) | `mysql/5.7/Dockerfile` | `docker.cnb.cool/php127/docker/mysql:5.7.44` |
-| Redis | 6.2.5 | `redis/6.2.5/Dockerfile` | `docker.cnb.cool/php127/docker/redis:6.2.5` |
+| Redis | 6.2.5 (alpine) | `redis/6.2.5/Dockerfile` | `docker.cnb.cool/php127/docker/redis:6.2.5` |
 | Nginx | 1.26.2 | `nginx/Dockerfile` | `docker.cnb.cool/php127/docker/nginx:1.26.2` |
 
 所有镜像均已配置 **Asia/Shanghai** 时区，并安装 `bash`、`vim`。
