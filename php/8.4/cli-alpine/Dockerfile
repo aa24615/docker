@@ -14,6 +14,9 @@ RUN curl -sSLf \
         https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
     chmod +x /usr/local/bin/install-php-extensions
 
+# composer
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+
 
 
 #ext

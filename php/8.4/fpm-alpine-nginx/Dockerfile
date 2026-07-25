@@ -1,6 +1,9 @@
 FROM php:8.4-fpm-alpine
 WORKDIR /www/
 
+# composer
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+
 #nginx
 RUN apk add nginx
 
