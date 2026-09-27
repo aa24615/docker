@@ -9,6 +9,7 @@
 | MySQL | 5.7.44 (Oracle Linux) | `mysql/5.7/Dockerfile` | `docker.cnb.cool/php127/docker/mysql:5.7.44` |
 | Redis | 6.2.5 (alpine) | `redis/6.2.5/Dockerfile` | `docker.cnb.cool/php127/docker/redis:6.2.5` |
 | Nginx | 1.26.2 | `nginx/Dockerfile` | `docker.cnb.cool/php127/docker/nginx:1.26.2` |
+| XtraBackup | 2.4 | `xtrabackup/2.4/Dockerfile` | `docker.cnb.cool/php127/docker/xtrabackup:2.4` |
 
 所有镜像均已配置 **Asia/Shanghai** 时区，并安装 `bash`、`vim`。
 

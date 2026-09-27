@@ -75,3 +75,8 @@ branch:
         description: 构建 Nginx + MySQL + Redis 全部镜像
         event: web_trigger_lnmp
         groupName: LNMP
+
+      - name: 构建 XtraBackup 2.4
+        description: 构建 Percona XtraBackup 2.4 镜像 (MySQL 5.7 备份)
+        event: web_trigger_xtrabackup
+        groupName: LNMP

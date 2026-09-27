@@ -126,6 +126,12 @@ master:
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/redis:6.2.5 .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/redis:6.2.5
 
+        - name: 构建:xtrabackup24
+          script:
+            - cd ./xtrabackup/2.4
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/xtrabackup:2.4 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/xtrabackup:2.4
+
   web_trigger_nodejs:
     - services:
         - docker
@@ -486,3 +492,21 @@ master:
             - cd ./redis/6.2.5
             - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/redis:6.2.5 .
             - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/redis:6.2.5
+
+  web_trigger_xtrabackup:
+    - services:
+        - docker
+      docker:
+        image: cnbcool/default-build-env:latest
+        volumes:
+          - /root/
+      stages:
+        - name: docker login
+          script:
+            - docker login -u ${CNB_TOKEN_USER_NAME} -p "${CNB_TOKEN}" ${CNB_DOCKER_REGISTRY}
+
+        - name: 构建:xtrabackup24
+          script:
+            - cd ./xtrabackup/2.4
+            - docker build -t ${CNB_DOCKER_REGISTRY}/php127/docker/xtrabackup:2.4 .
+            - docker push ${CNB_DOCKER_REGISTRY}/php127/docker/xtrabackup:2.4
