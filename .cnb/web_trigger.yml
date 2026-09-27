@@ -4,7 +4,8 @@ branch:
       - name: 构建全部
         description: 构建所有镜像
         event: web_trigger_all
-        isDefault: true
+        
+  
 
       - name: 构建 Nodejs
         description: 构建 Nodejs 镜像 (16/18/20/22/24)
