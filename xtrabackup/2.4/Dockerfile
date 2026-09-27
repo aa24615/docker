@@ -2,7 +2,8 @@ FROM percona/percona-xtrabackup:2.4
 
 ENV TZ=Asia/Shanghai
 
-RUN yum install -y tzdata bash vim \
+RUN microdnf -y install tzdata bash vim-minimal \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
-    && yum clean all
+    && microdnf clean all \
+    && rm -rf /var/cache/yum /var/cache/dnf
